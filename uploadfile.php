@@ -1,9 +1,11 @@
 <?php
 
+include "pokemonClass.php";
 // You should have file_uploads = On in C:\xampp\php\php.ini (if you have xampp)
 
 $target_dir = "uploads/"; // you must create this directory in the folder where you have the PHP file
 $target_file = $target_dir . basename($_FILES["fileup"]["name"]);
+
 
 echo "<p>Upload information</p><ul>";
 echo  "<li>Target folder for the upload :". $target_file . "</li>";
@@ -51,7 +53,27 @@ if ($uploadOk == 0) {
     }
 }
 
-echo "</ul>";
+$servername = "localhost"; // default server name
+$username = "carlo"; // user name that you created
+$password = "nmse*CWRqYgk9jxf"; // password that you created
+$dbname = "pokemondatabase";
 
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error ."<br>");
+} 
+echo "Connected successfully <br>";
+
+$insertLoc = $_REQUEST['PokeName'];
+echo ("Insert location will be: ".$insertLoc);
+
+$sql = "UPDATE pokemon SET Image='$target_file'
+ WHERE Name='$insertLoc'";
+
+$result = $conn->query($sql);
+$conn->close();
 
 ?>
