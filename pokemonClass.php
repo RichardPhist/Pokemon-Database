@@ -29,7 +29,7 @@ class Pokemon implements JsonSerializable {
         $this->SpDef = 0;
         $this->Speed = 0;
         $this->Generation = 0;
-        $this->Legendary = "";
+        $this->Legendary = false;
        }
 
        public function jsonSerialize() {

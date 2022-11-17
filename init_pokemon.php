@@ -5,7 +5,7 @@ include "pokemonClass.php";
 $servername = "localhost"; // default server name
 $username = "carlo"; // user name that you created
 $password = "nmse*CWRqYgk9jxf"; // password that you created
-$dbname = "PKMDB";
+$dbname = "PKMDataBase";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -38,19 +38,19 @@ if ($conn->connect_error) {
 	
 $sql = "CREATE TABLE Pokemon (
 pkey INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-Number INT(30) NOT NULL,
+Number INT(10) NOT NULL,
 Name VARCHAR(30) NOT NULL,
 Type1 VARCHAR(20) NOT NULL,
-Type2 VARCHAR(100) NOT NULL,
-Total INT(10) NOT NULL,
-HP INT(10) NOT NULL,
-Attack INT(10) NOT NULL,
-Defense INT(10) NOT NULL,
-SpAtk INT(10) NOT NULL,
-SpDef INT(10) NOT NULL,
-Speed INT(10) NOT NULL,
-Generation INT(10) NOT NULL,
-Legendary VARCHAR(20) NOT NULL
+Type2 VARCHAR(20) NOT NULL,
+Total INT(6) NOT NULL,
+HP INT(3) NOT NULL,
+Attack INT(3) NOT NULL,
+Defense INT(3) NOT NULL,
+SpAtk INT(3) NOT NULL,
+SpDef INT(3) NOT NULL,
+Speed INT(3) NOT NULL,
+Generation INT(3) NOT NULL,
+Legendary BOOLEAN(1) NOT NULL
 )";
 
 
@@ -66,9 +66,9 @@ if ($stmt==FALSE) {
 	echo "There is a problem with prepare <br>";
 	echo $conn->error; // Need to connect/reconnect before the prepare call otherwise it doesnt work
 }
-$stmt->bind_param("isssiiiiiiiis", $Number, $Name, $Type1, $Type2, $Total, $HP, $Attack, $Defense, $SpAtk, $SpDef, $Speed, $Generation, $Legendary);
+$stmt->bind_param("isssiiiiiiiib", $Number, $Name, $Type1, $Type2, $Total, $HP, $Attack, $Defense, $SpAtk, $SpDef, $Speed, $Generation, $Legendary);
 
-for ($i=0;$i<$n;$i++) {
+for ($i=0;$i<10;$i++) {
     $individual = new Pokemon();
     echo $individual->Display() . "<br>";
     // set parameters and execute
