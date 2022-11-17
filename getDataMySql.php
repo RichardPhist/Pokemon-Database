@@ -1,6 +1,6 @@
 <?php
 
-include "pokemonClass.php"
+include "pokemonClass.php";
 
 // open and load the content of the database
 $servername = "localhost"; // default server name

@@ -1,6 +1,6 @@
 <?php
 
-include "pokemonClass.php"
+include "pokemonClass.php";
 
 $servername = "localhost"; // default server name
 $username = "carlo"; // user name that you created
@@ -37,7 +37,7 @@ if ($conn->connect_error) {
 // print_r ($lvar);
 	
 $sql = "CREATE TABLE Pokemon (
-pkey INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+pkey INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 Number INT(30) NOT NULL,
 Name VARCHAR(30) NOT NULL,
 Type1 VARCHAR(20) NOT NULL,

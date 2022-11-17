@@ -1,6 +1,6 @@
 <?php
 
-include "pokemonClass.php"
+include "pokemonClass.php";
 
 $index = $_GET["Index"];
 
