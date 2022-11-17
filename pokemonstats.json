@@ -180,6 +180,21 @@
       "Legendary": false
     },
     {
+      "Number": 13,
+      "Name": "Weedle",
+      "Type1": "Bug",
+      "Type2": "Poison",
+      "Total": 195,
+      "HP": 40,
+      "Attack": 35,
+      "Defense": 30,
+      "SpAtk": 20,
+      "SpDef": 20,
+      "Speed": 50,
+      "Generation": 1,
+      "Legendary": false
+    },
+    {
         "Number": 14,
         "Name": "Kakuna",
         "Type1": "Bug",

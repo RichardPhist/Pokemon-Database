@@ -17,12 +17,12 @@ if ($conn->connect_error) {
 echo "Connected successfully <br>";
 
 // Creation of the database
-$sql = "CREATE DATABASE ". $dbname;
-if ($conn->query($sql) === TRUE) {
-    echo "Database ". $dbname ." created successfully<br>";
-} else {
-    echo "Error creating database: " . $conn->error ."<br>";
-}
+// $sql = "CREATE DATABASE ". $dbname;
+// if ($conn->query($sql) === TRUE) {
+//     echo "Database ". $dbname ." created successfully<br>";
+// } else {
+//     echo "Error creating database: " . $conn->error ."<br>";
+// }
 
 // close the connection
 $conn->close();
@@ -68,24 +68,25 @@ if ($stmt==FALSE) {
 }
 $stmt->bind_param("isssiiiiiiiib", $Number, $Name, $Type1, $Type2, $Total, $HP, $Attack, $Defense, $SpAtk, $SpDef, $Speed, $Generation, $Legendary);
 
-for ($i=0;$i<10;$i++) {
-    $individual = new Pokemon();
-    echo $individual->Display() . "<br>";
-    // set parameters and execute
-    $Number = $individual->Number;
-    $Name = $individual->Name;
-    $Type1 = $individual->Type1;
-    $Type2 = $individual->Type2;
-    $Total = $individual->Total;
-    $HP = $individual->HP;
-    $Attack = $individual->Attack;
-    $Defense = $individual->Defense;
-    $SpAtk = $individual->SpAtk;
-    $SpDef = $individual->SpDef;
-    $Speed = $individual->Speed;
-    $Generation = $individual->Generation;
-    $Legendary = $individual->Legendary;
-    echo "New record ". $i ." created successfully<br>";
+$json_str = file_get_contents("pokemonstats.json");
+$poke_arr = json_decode($json_str);
+$count = count($poke_arr);
+
+for ($i = 0; $i < $count; $i++) {
+    $Number = $poke_arr[$i]->Number;
+    $Name = $poke_arr[$i]->Name;
+    $Type1 = $poke_arr[$i]->Type1;
+    $Type2 = $poke_arr[$i]->Type2;
+    $Total = $poke_arr[$i]->Total;
+    $HP = $poke_arr[$i]->HP;
+    $Attack = $poke_arr[$i]->Attack;
+    $Defense = $poke_arr[$i]->Defense;
+    $SpAtk = $poke_arr[$i]->SpAtk;
+    $SpDef = $poke_arr[$i]->SpDef;
+    $Speed = $poke_arr[$i]->Speed;
+    $Generation = $poke_arr[$i]->Generation;
+    $Legendary = $poke_arr[$i]->Legendary;
+    $stmt->execute();
 }
 
 $stmt->close();
