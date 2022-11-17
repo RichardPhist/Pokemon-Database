@@ -24,7 +24,7 @@ if ($index!=-1) {
     echo ($NumTot . "<br>");
 		
 	// Selection of data 
-	$sql = "SELECT Number, Name, Type1, Type2, Total, HP, Attack, Defense, SpAtk, SpDef, Speed, Generation, Legendary FROM Pokemon WHERE pkey=" . $index;
+	$sql = "SELECT Number, Name, Type1, Type2, Total, HP, Attack, Defense, SpAtk, SpDef, Speed, Generation, Legendary, Image FROM Pokemon WHERE pkey=" . $index;
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {
@@ -45,8 +45,9 @@ if ($index!=-1) {
         $newPokemon->Speed = ($row["Speed"]);
         $newPokemon->Generation = ($row["Generation"]);
         $newPokemon->Legendary = ($row["Legendary"]);
+		$newPokemon->Image = ($row["Image"]);
 		
-		echo json_encode($newstudent);
+		echo json_encode($newPokemon);
 	} else {
 		$bad1=[ 'bad' => 1];
 		echo json_encode($bad1);	

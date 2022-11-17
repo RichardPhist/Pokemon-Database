@@ -50,7 +50,8 @@ SpAtk INT(3) NOT NULL,
 SpDef INT(3) NOT NULL,
 Speed INT(3) NOT NULL,
 Generation INT(3) NOT NULL,
-Legendary BOOLEAN NOT NULL
+Legendary BOOLEAN NOT NULL,
+Image VARCHAR(255) NOT NULL
 )";
 
 
@@ -61,12 +62,12 @@ if ($conn->query($sql) === TRUE) {
 }
 
 //Insert different pokemon into the pokemon table
-$stmt = $conn->prepare("INSERT INTO Pokemon (Number, Name, Type1, Type2, Total, HP, Attack, Defense, SpAtk, SpDef, Speed, Generation, Legendary) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$stmt = $conn->prepare("INSERT INTO Pokemon (Number, Name, Type1, Type2, Total, HP, Attack, Defense, SpAtk, SpDef, Speed, Generation, Legendary, Image) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 if ($stmt==FALSE) {
 	echo "There is a problem with prepare <br>";
 	echo $conn->error; // Need to connect/reconnect before the prepare call otherwise it doesnt work
 }
-$stmt->bind_param("isssiiiiiiiib", $Number, $Name, $Type1, $Type2, $Total, $HP, $Attack, $Defense, $SpAtk, $SpDef, $Speed, $Generation, $Legendary);
+$stmt->bind_param("isssiiiiiiiibs", $Number, $Name, $Type1, $Type2, $Total, $HP, $Attack, $Defense, $SpAtk, $SpDef, $Speed, $Generation, $Legendary, $Image);
 
 $json_str = file_get_contents("pokemonstats.json");
 $poke_arr = json_decode($json_str);
@@ -86,6 +87,7 @@ for ($i = 0; $i < $count; $i++) {
     $Speed = $poke_arr[$i]->Speed;
     $Generation = $poke_arr[$i]->Generation;
     $Legendary = $poke_arr[$i]->Legendary;
+    $Image = $poke_arr[$i]->Image;
     $stmt->execute();
 }
 

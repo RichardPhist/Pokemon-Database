@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 } 
     
 // Selection of data 
-$sql = "SELECT Number, Name, Type1, Type2, Total, HP, Attack, Defense, SpAtk, SpDef, Speed, Generation, Legendary FROM Pokemon";
+$sql = "SELECT Number, Name, Type1, Type2, Total, HP, Attack, Defense, SpAtk, SpDef, Speed, Generation, Legendary, Image FROM Pokemon";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -38,6 +38,7 @@ if ($result->num_rows > 0) {
     $newPokemon->Speed = ($row["Speed"]);
     $newPokemon->Generation = ($row["Generation"]);
     $newPokemon->Legendary = ($row["Legendary"]);
+    $newPokemon->Image = ($row["Image"]);
 
     $arr[$i] = $newPokemon;
     $i += 1;

@@ -14,6 +14,7 @@ class Pokemon implements JsonSerializable {
     public $Speed;
     public $Generation;
     public $Legendary;
+    public $Image;
 
     public function __construct() { // the constructor has an input
         
@@ -30,6 +31,7 @@ class Pokemon implements JsonSerializable {
         $this->Speed = 0;
         $this->Generation = 0;
         $this->Legendary = false;
+        $this->$Image = "";
        }
 
        public function jsonSerialize() {
@@ -47,6 +49,7 @@ class Pokemon implements JsonSerializable {
             'Speed' => $this->Speed,
             'Generation' => $this->Generation,
             'Legendary' => $this->Legendary,
+            'Image' => $this->$Image
             ];
     }
 
@@ -65,6 +68,7 @@ class Pokemon implements JsonSerializable {
         $this->Speed=$json['Speed'];
         $this->Generation=$json['Generation'];
         $this->Lgendary=$json['Legendary'];
+        $this->$Image=$json['Image'];
 	}
 
     public function Display() {
