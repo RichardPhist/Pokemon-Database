@@ -1,0 +1,18 @@
+html{
+    background-color: rgb(206, 240, 187);
+}
+
+section{
+    width: 20%;
+}
+
+input,label{
+    width: 100%;
+}
+
+.scrollers{
+    font-weight: bold;
+}
+
+
+

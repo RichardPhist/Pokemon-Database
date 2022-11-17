@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta lang="en">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="databasestyle.css">
+    <script src="databasescript.js"></script>
+    <title>Pokemon Data</title>
+  </head>
+
+  <body>
+    <h1>Pokemon Database</h1>
+    <section>
+        <label name="number">Pokedex Number: </label>
+        <input type="text" for="number" id="number">
+        <label name="pokeName">Name:</label>
+        <input type="text" for="pokeName" id="pokeName">
+        <label name="type1">Type 1:</label>
+        <input type="text" for="type1" id="type1">
+        <label name="type2">Type 2:</label>
+        <input type="text" for="type2" id="type2">
+        <label name="total">Stat Total:</label>
+        <input type="text" for="total" id="total">
+        <label name="HP">HP:</label>
+        <input type="text" for="HP" id="HP">
+        <label name="ATK">Attack:</label>
+        <input type="text" for="ATK" id="ATK">
+        <label name="DEF">Defense:</label>
+        <input type="text" for="DEF" id="DEF">
+        <label name="SPATK">Special Attack:</label>
+        <input type="text" for="SPATK" id="SPATK">
+        <label name="SPDEF">Special Defense:</label>
+        <input type="text" for="SPDEF" id="SPDEF">
+        <label name="SPD">Speed:</label>
+        <input type="text" for="SPD" id="SPD">
+        <label name="GEN">Generation:</label>
+        <input type="text" for="GEN" id="GEN">
+        <label name="Legendary">Legendary</label>
+        <input type="text" for="Legendary" id="Legendary">
+        <input type="button" onclick="" value="Submit">
+        <input type="button" onclick="loadData()" value="Load">
+    </section>
+
+    <section>
+        <button class="scrollers" onclick="toBeg()">|<</button>
+        <button class="scrollers" onclick="prev()"><</button>
+        <button class="scrollers" onclick="next()">></button>
+        <button class="scrollers" onclick="toEnd()">>|</button>
+    </section>
+
+    <table id="pokeTable">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+
+    <footer>
+        Email: tyson980@mail.fresnostate.edu<br>
+        Carlo Quitorio <br>
+        10/20/2022
+    </footer>
+  </body>
+</html>
