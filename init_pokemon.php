@@ -5,7 +5,7 @@ include "pokemonClass.php"
 $servername = "localhost"; // default server name
 $username = "carlo"; // user name that you created
 $password = "nmse*CWRqYgk9jxf"; // password that you created
-$dbname = "CorrectPKMDataBase";
+$dbname = "PKMDB";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -55,7 +55,7 @@ Legendary VARCHAR(20) NOT NULL
 
 
 if ($conn->query($sql) === TRUE) {
-    echo "Table Person created successfully<br>";
+    echo "Table Pokemon created successfully<br>";
 } else {
     echo "Error creating table: " . $conn->error ."<br>";
 }
@@ -66,7 +66,7 @@ if ($stmt==FALSE) {
 	echo "There is a problem with prepare <br>";
 	echo $conn->error; // Need to connect/reconnect before the prepare call otherwise it doesnt work
 }
-$stmt->bind_param("isssiiiiiiiis", $Nunber, $Name, $Type1, $Type2, $Total, $HP, $Attack, $Defense, $SpAtk, $SpDef, $Speed, $Generation, $Legendary);
+$stmt->bind_param("isssiiiiiiiis", $Number, $Name, $Type1, $Type2, $Total, $HP, $Attack, $Defense, $SpAtk, $SpDef, $Speed, $Generation, $Legendary);
 
 for ($i=0;$i<$n;$i++) {
     $individual = new Pokemon();

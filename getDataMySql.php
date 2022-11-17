@@ -6,7 +6,7 @@ include "pokemonClass.php"
 $servername = "localhost"; // default server name
 $username = "carlo"; // user name that you created
 $password = "nmse*CWRqYgk9jxf"; // password that you created
-$dbname = "CorrectPKMDataBase";
+$dbname = "PKMDB";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -36,8 +36,8 @@ if ($result->num_rows > 0) {
     $newPokemon->$SpAtk = ($row["SpAtk"]);
     $newPokemon->$SpDef = ($row["SpDef"]);
     $newPokemon->$Speed = ($row["Speed"]);
-    $newPokemon->$Generation = ($row["Number"]);
-    $newPokemon->$Legendary = ($row["Number"]);
+    $newPokemon->$Generation = ($row["Generation"]);
+    $newPokemon->$Legendary = ($row["Legendary"]);
 
     $arr[$i] = $newPokemon;
     $i += 1;

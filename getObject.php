@@ -9,7 +9,7 @@ if ($index!=-1) {
 	$servername = "localhost"; // default server name
 	$username = "carlo"; // user name that you created
 	$password = "nmse*CWRqYgk9jxf"; // password that you created
-	$dbname = "CorrectPKMDataBase";
+	$dbname = "PKMDB";
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// Check connection

@@ -17,19 +17,19 @@ class Pokemon implements JsonSerializable {
 
     public function __construct() { // the constructor has an input
         
-        $this->Number = (rand(1,5000));
-        $this->Name = (generateRandomString());
-        $this->Type1 = (generateRandomString());
-        $this->Type2 = (generateRandomString());
-        $this->Total = (rand(200,1000));
-        $this->HP = (rand(1,225));
-        $this->Attack = (rand(1,225));
-        $this->Defense = (rand(1,225));
-        $this->SpAtk = (rand(1,225));
-        $this->SpDef = (rand(1,225));
-        $this->Speed = (rand(1,225));
-        $this->Generation = (rand(1,50));
-        $this->Legendary = (generateRandomString());
+        $this->Number = "";
+        $this->Name = "";
+        $this->Type1 = "";
+        $this->Type2 = "";
+        $this->Total = 0;
+        $this->HP = 0;
+        $this->Attack = 0;
+        $this->Defense = 0;
+        $this->SpAtk = 0;
+        $this->SpDef = 0;
+        $this->Speed = 0;
+        $this->Generation = 0;
+        $this->Legendary = "";
        }
 
        public function jsonSerialize() {
@@ -60,11 +60,11 @@ class Pokemon implements JsonSerializable {
 		$this->HP=$json['HP'];
 		$this->Attack=$json['Attack'];
         $this->Defense=$json['Defense'];
-        $this->SpAtk=$json['last_name'];
-        $this->SpDef=$json['last_name'];
-        $this->Speed=$json['last_name'];
-        $this->Generation=$json['last_name'];
-        $this->Lgendary=$json['last_name'];
+        $this->SpAtk=$json['SpAtk'];
+        $this->SpDef=$json['SpDef'];
+        $this->Speed=$json['Speed'];
+        $this->Generation=$json['Generation'];
+        $this->Lgendary=$json['Legendary'];
 	}
 
     public function Display() {
@@ -75,16 +75,5 @@ class Pokemon implements JsonSerializable {
 	public function GetString() {
 		return json_encode($this);
 	}
-}
-
-function generateRandomString($length = 10) {
-	// list of characters that can be present in the string
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
 }
 ?>
