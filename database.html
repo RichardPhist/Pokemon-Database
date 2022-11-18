@@ -10,43 +10,50 @@
 
   <body>
     <h1>Pokemon Database</h1>
-    <section>
-        <label name="number">Pokedex Number: </label>
-        <input type="text" for="number" id="number">
-        <label name="pokeName">Name:</label>
-        <input type="text" for="pokeName" id="pokeName">
-        <label name="type1">Type 1:</label>
-        <input type="text" for="type1" id="type1">
-        <label name="type2">Type 2:</label>
-        <input type="text" for="type2" id="type2">
-        <label name="total">Stat Total:</label>
-        <input type="text" for="total" id="total">
-        <label name="HP">HP:</label>
-        <input type="text" for="HP" id="HP">
-        <label name="ATK">Attack:</label>
-        <input type="text" for="ATK" id="ATK">
-        <label name="DEF">Defense:</label>
-        <input type="text" for="DEF" id="DEF">
-        <label name="SPATK">Special Attack:</label>
-        <input type="text" for="SPATK" id="SPATK">
-        <label name="SPDEF">Special Defense:</label>
-        <input type="text" for="SPDEF" id="SPDEF">
-        <label name="SPD">Speed:</label>
-        <input type="text" for="SPD" id="SPD">
-        <label name="GEN">Generation:</label>
-        <input type="text" for="GEN" id="GEN">
-        <label name="Legendary">Legendary</label>
-        <input type="text" for="Legendary" id="Legendary">
-        <input type="button" onclick="" value="Submit">
-        <input type="button" onclick="loadData()" value="Load">
-    </section>
-
-    <section>
-        <button class="scrollers" onclick="toBeg()">|<</button>
-        <button class="scrollers" onclick="prev()"><</button>
-        <button class="scrollers" onclick="next()">></button>
-        <button class="scrollers" onclick="toEnd()">>|</button>
-    </section>
+    <div class="flex-container" style="display:flex">
+      <div id="Stats" style="width:25%;">
+        <div class="txtBoxes"><label name="number">Pokedex Number: </label></div>
+        <div class="txtBoxes"><input type="text" for="number" id="number"></div>
+        <div class="txtBoxes"><label name="pokeName">Name:</label></div>
+        <div class="txtBoxes"><input type="text" for="pokeName" id="pokeName"></div>
+        <div class="txtBoxes"><label name="type1">Type 1:</label></div>
+        <div class="txtBoxes"><input type="text" for="type1" id="type1"></div>
+        <div class="txtBoxes"><label name="type2">Type 2:</label></div>
+        <div class="txtBoxes"><input type="text" for="type2" id="type2"></div>
+        <div class="txtBoxes"><label name="total">Stat Total:</label></div>
+        <div class="txtBoxes"><input type="text" for="total" id="total"></div>
+        <div class="txtBoxes"><label name="HP">HP:</label></div>
+        <div class="txtBoxes"><input type="text" for="HP" id="HP"></div>
+        <div class="txtBoxes"><label name="ATK">Attack:</label></div>
+        <div class="txtBoxes"><input type="text" for="ATK" id="ATK"></div>
+        <div class="txtBoxes"><label name="DEF">Defense:</label></div>
+        <div class="txtBoxes"><input type="text" for="DEF" id="DEF"></div>
+        <div class="txtBoxes"><label name="SPATK">Special Attack:</label></div>
+        <div class="txtBoxes"><input type="text" for="SPATK" id="SPATK"></div>
+        <div class="txtBoxes"><label name="SPDEF">Special Defense:</label></div>
+        <div class="txtBoxes"><input type="text" for="SPDEF" id="SPDEF"></div>
+        <div class="txtBoxes"><label name="SPD">Speed:</label></div>
+        <div class="txtBoxes"><input type="text" for="SPD" id="SPD"></div>
+        <div class="txtBoxes"><label name="GEN">Generation:</label></div>
+        <div class="txtBoxes"><input type="text" for="GEN" id="GEN"></div>
+        <div class="txtBoxes"><label name="Legendary">Legendary</label></div>
+        <div class="txtBoxes"><input type="text" for="Legendary" id="Legendary"></div>
+        <div class="buttons"><input type="button" onclick="" value="Submit"></div>
+        <div class="buttons"><input type="button" onclick="loadData()" value="Load"></div>
+      </div>
+      <div id="StatGraph">
+        <div id="box" class="box">
+          <div class="clipboard" id="HexBackground">
+            <div class="clipboard" id="UpdatedStats" style="clip-path: polygon(0% 10%, 50% 45%, 100% 25%, 100% 75%, 50% 100%, 0 75%)" >
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="PokePicture" style="background-color: red; width:30%; height: auto;">
+        <img src="">
+      </div>
+    </div>
 
     <form action="uploadfile.php" method="post" enctype="multipart/form-data">
         <p>Select an image to upload:</p>

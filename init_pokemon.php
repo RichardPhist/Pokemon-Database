@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 } 
 echo "Connected successfully <br>";
 
-// Creation of the database
+//Creation of the database
 // $sql = "CREATE DATABASE ". $dbname;
 // if ($conn->query($sql) === TRUE) {
 //     echo "Database ". $dbname ." created successfully<br>";
