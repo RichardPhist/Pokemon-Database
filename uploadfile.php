@@ -67,7 +67,7 @@ if ($conn->connect_error) {
 } 
 echo "Connected successfully <br>";
 
-$insertLoc = $_REQUEST['PokeName'];
+$insertLoc = $_POST['PokeName'];
 echo ("Insert location will be: ".$insertLoc);
 
 $sql = "UPDATE pokemon SET Image='$target_file'
