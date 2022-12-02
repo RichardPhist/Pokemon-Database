@@ -2,6 +2,8 @@
 
 include "pokemonClass.php";
 
+//performs on load of home page 
+
 // open and load the content of the database
 $servername = "localhost"; // default server name
 $username = "carlo"; // user name that you created
@@ -24,23 +26,23 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
     
-    $newPokemon = new Pokemon();
-    $newPokemon->Number = ($row["Number"]);
-    $newPokemon->Name = ($row["Name"]);
-    $newPokemon->Type1 = ($row["Type1"]);
-    $newPokemon->Type2 = ($row["Type2"]);
-    $newPokemon->Total = ($row["Total"]);
-    $newPokemon->HP = ($row["HP"]);
-    $newPokemon->Attack = ($row["Attack"]);
-    $newPokemon->Defense = ($row["Defense"]);
-    $newPokemon->SpAtk = ($row["SpAtk"]);
-    $newPokemon->SpDef = ($row["SpDef"]);
-    $newPokemon->Speed = ($row["Speed"]);
-    $newPokemon->Generation = ($row["Generation"]);
-    $newPokemon->Legendary = ($row["Legendary"]);
-    $newPokemon->Image = ($row["Image"]);
+    $allPokemon = new Pokemon();
+    $allPokemon->Number = ($row["Number"]);
+    $allPokemon->Name = ($row["Name"]);
+    $allPokemon->Type1 = ($row["Type1"]);
+    $allPokemon->Type2 = ($row["Type2"]);
+    $allPokemon->Total = ($row["Total"]);
+    $allPokemon->HP = ($row["HP"]);
+    $allPokemon->Attack = ($row["Attack"]);
+    $allPokemon->Defense = ($row["Defense"]);
+    $allPokemon->SpAtk = ($row["SpAtk"]);
+    $allPokemon->SpDef = ($row["SpDef"]);
+    $allPokemon->Speed = ($row["Speed"]);
+    $allPokemon->Generation = ($row["Generation"]);
+    $allPokemon->Legendary = ($row["Legendary"]);
+    $allPokemon->Image = ($row["Image"]);
 
-    $arr[$i] = $newPokemon;
+    $arr[$i] = $allPokemon;
     $i ++;
     }
     
