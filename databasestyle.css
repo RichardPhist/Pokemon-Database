@@ -10,7 +10,8 @@ input,label{
     width: 100%;
 }
 
-.scrollers{
+#scrollers{
+    width: 20%;
     font-weight: bold;
 }
 

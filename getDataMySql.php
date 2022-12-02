@@ -15,14 +15,14 @@ if ($conn->connect_error) {
 } 
     
 // Selection of data 
-$sql = "SELECT Number, Name, Type1, Type2, Total, HP, Attack, Defense, SpAtk, SpDef, Speed, Generation, Legendary, Image FROM Pokemon";
+$sql = "SELECT * FROM Pokemon";
 $result = $conn->query($sql);
+$i = 0;
+$arr = Array();
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        
-    $row = $result->fetch_assoc(); // Fetch a result row as an associative array
     
     $newPokemon = new Pokemon();
     $newPokemon->Number = ($row["Number"]);
@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
     $newPokemon->Image = ($row["Image"]);
 
     $arr[$i] = $newPokemon;
-    $i += 1;
+    $i ++;
     }
     
     echo json_encode($arr);

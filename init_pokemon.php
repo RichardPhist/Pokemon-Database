@@ -17,12 +17,12 @@ if ($conn->connect_error) {
 echo "Connected successfully <br>";
 
 //Creation of the database
-// $sql = "CREATE DATABASE ". $dbname;
-// if ($conn->query($sql) === TRUE) {
-//     echo "Database ". $dbname ." created successfully<br>";
-// } else {
-//     echo "Error creating database: " . $conn->error ."<br>";
-// }
+$sql = "CREATE DATABASE IF NOT EXISTS ". $dbname;
+if ($conn->query($sql) === TRUE) {
+    echo "Database ". $dbname ." created successfully<br>";
+} else {
+    echo "Error creating database: " . $conn->error ."<br>";
+}
 
 // close the connection
 $conn->close();
@@ -36,22 +36,22 @@ if ($conn->connect_error) {
 // $lvar=get_object_vars($a0[0]);
 // print_r ($lvar);
 	
-$sql = "CREATE TABLE Pokemon (
+$sql = "CREATE TABLE `Pokemon` (
 pkey INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-Number INT(10) NOT NULL,
-Name VARCHAR(30) NOT NULL,
-Type1 VARCHAR(20) NOT NULL,
-Type2 VARCHAR(20) NOT NULL,
-Total INT(6) NOT NULL,
-HP INT(3) NOT NULL,
-Attack INT(3) NOT NULL,
-Defense INT(3) NOT NULL,
-SpAtk INT(3) NOT NULL,
-SpDef INT(3) NOT NULL,
-Speed INT(3) NOT NULL,
-Generation INT(3) NOT NULL,
-Legendary BOOLEAN NOT NULL,
-Image VARCHAR(255) NOT NULL
+`Number` INT(10) NOT NULL,
+`Name` VARCHAR(30) NOT NULL,
+`Type1` VARCHAR(20) NOT NULL,
+`Type2` VARCHAR(20) NOT NULL,
+`Total` INT(6) NOT NULL,
+`HP` INT(3) NOT NULL,
+`Attack` INT(3) NOT NULL,
+`Defense` INT(3) NOT NULL,
+`SpAtk` INT(3) NOT NULL,
+`SpDef` INT(3) NOT NULL,
+`Speed` INT(3) NOT NULL,
+`Generation` INT(3) NOT NULL,
+`Legendary` TINYINT(2) NOT NULL,
+`Image` VARCHAR(255) NOT NULL
 )";
 
 
@@ -67,7 +67,7 @@ if ($stmt==FALSE) {
 	echo "There is a problem with prepare <br>";
 	echo $conn->error; // Need to connect/reconnect before the prepare call otherwise it doesnt work
 }
-$stmt->bind_param("isssiiiiiiiibs", $Number, $Name, $Type1, $Type2, $Total, $HP, $Attack, $Defense, $SpAtk, $SpDef, $Speed, $Generation, $Legendary, $Image);
+$stmt->bind_param("isssiiiiiiiiis", $Number, $Name, $Type1, $Type2, $Total, $HP, $Attack, $Defense, $SpAtk, $SpDef, $Speed, $Generation, $Legendary, $Image);
 
 $json_str = file_get_contents("pokemonstats.json");
 $poke_arr = json_decode($json_str);
@@ -86,7 +86,12 @@ for ($i = 0; $i < $count; $i++) {
     $SpDef = $poke_arr[$i]->SpDef;
     $Speed = $poke_arr[$i]->Speed;
     $Generation = $poke_arr[$i]->Generation;
-    $Legendary = $poke_arr[$i]->Legendary;
+    if($poke_arr[$i]->Legendary == 'true'){
+        $Legendary = 1;
+    }
+    else {
+        $Legendary = 0;
+    }
     $Image = $poke_arr[$i]->Image;
     $stmt->execute();
 }

@@ -18,7 +18,7 @@
         <div class="txtBoxes"><input type="text" for="pokeName" id="pokeName"></div>
         <div class="txtBoxes"><label name="type1">Type 1:</label></div>
         <div class="txtBoxes"><input type="text" for="type1" id="type1"></div>
-        <div class="txtBoxes"><label name="type2">Type 2:</label></div>
+        <div class="txtBoxes"><label name="type2">Type 2:</label></div> 
         <div class="txtBoxes"><input type="text" for="type2" id="type2"></div>
         <div class="txtBoxes"><label name="total">Stat Total:</label></div>
         <div class="txtBoxes"><input type="text" for="total" id="total"></div>
@@ -39,7 +39,19 @@
         <div class="txtBoxes"><label name="Legendary">Legendary</label></div>
         <div class="txtBoxes"><input type="text" for="Legendary" id="Legendary"></div>
         <div class="buttons"><input type="button" onclick="" value="Submit"></div>
-        <div class="buttons"><input type="button" onclick="loadData()" value="Load"></div>
+        <div class="txtBoxes">
+          <label name="index">GET</label>
+          <input type="text" for="index" id="DexNum">
+        </div>
+        <div class="buttons"><input type="button" onclick="getSinglePokemon()" value="GET"></div>
+        <div class="buttons"><input type="button" onclick="saveData()" value="Save"></div>
+        <div class="buttons"><input type="button" onclick="deleteData()" value="Delete"></div>
+        <div>
+          <button id="scrollers" onclick="toBeg()">|<
+          <button id="scrollers" onclick="prev()"><<
+          <button id="scrollers" onclick="next()">>>
+          <button id="scrollers" onclick="toEnd()">>|
+        </div>
       </div>
       <div id="StatGraph">
         <div id="box" class="box">
@@ -50,8 +62,8 @@
           </div>
         </div>
       </div>
-      <div id="PokePicture" style="background-color: red; width:30%; height: auto;">
-        <img src="">
+      <div style="width:30%; height: auto;">
+        <img id="PokePicture" src="">
       </div>
     </div>
 
@@ -70,4 +82,5 @@
         10/20/2022
     </footer>
   </body>
+  </script>
 </html>
