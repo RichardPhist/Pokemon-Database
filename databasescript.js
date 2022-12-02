@@ -136,7 +136,8 @@ function getFromDB_individual() {
         //console.log("server response: "+httpRequest.responseText);
             var single_boi = JSON.parse(httpRequest_individual.responseText);
             var single_boi_num = single_boi.Number - 1;
-            show(pokemans[single_boi_num]);
+            currInd = single_boi_num;
+            show(pokemans[currInd]);
       } else {
         alert('There was a problem with the request.');
       }
