@@ -1,5 +1,12 @@
 <?php
 echo "IM IN THE POST";
+
+/*
+
+POST FROM JAVASCRIPT IS NOT WORKING, MIGHT BE FORM RELATED
+NEED TO ASK RYAN BC I'M DUMB AS HELL
+
+*/
 if(isset($_POST['Number'])){
     $num_insert = $_POST['Number'];
 }
