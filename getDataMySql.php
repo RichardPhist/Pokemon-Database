@@ -1,8 +1,9 @@
 <?php
 
+//performs on load of the html page
+
 include "pokemonClass.php";
 
-// open and load the content of the database
 $servername = "localhost"; // default server name
 $username = "carlo"; // user name that you created
 $password = "nmse*CWRqYgk9jxf"; // password that you created
@@ -49,6 +50,5 @@ if ($result->num_rows > 0) {
     $bad1=[ 'bad' => 1];
     echo json_encode($bad1);	
 }
-
 
 ?>

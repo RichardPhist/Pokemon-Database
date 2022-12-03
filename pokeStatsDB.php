@@ -40,7 +40,7 @@ function get_all_pokemon(){ //performs on load of page
     $conn->close();
 }
 
-// function get_single_pokemon(){ //performs on press of GET
+// function get_single_pokemon(){ //performs on press of GET button
 //     $conn = new mysqli('localhost', 'root', '', 'pokemondatabase');
 //     if ($conn->connect_error) {
 //         die("Connection failed: " . $conn->connect_error ."<br>");
