@@ -43,10 +43,11 @@ class PocketMonsters{
 
 var currInd = 0;
 var httpRequest;
+var httpRequest_individual;
 var httpRequestSave;
 var pokemans; //array of the pokemon stats
 
-function show(pokemans){ //prints info from database BROKE
+function show(pokemans){ //prints info from database
       console.log("Showing: " + currInd);
       document.getElementById("number").value = pokemans.Number;
       document.getElementById("pokeName").value = pokemans.Name;
@@ -127,17 +128,55 @@ function getFromDB() {
   }
 }
 
+function getFromDB_individual() {
+  try {
+    if (httpRequest_individual.readyState === XMLHttpRequest.DONE) {
+      if (httpRequest_individual.status === 200) {
+        //console.log("server status: "+httpRequest.status);
+        //console.log("server response: "+httpRequest.responseText);
+            var single_boi = JSON.parse(httpRequest_individual.responseText);
+            var single_boi_num = single_boi.Number - 1;
+            currInd = single_boi_num;
+            show(pokemans[currInd]);
+      } else {
+        alert('There was a problem with the request.');
+      }
+    }
+  }
+  catch( e ) { // Always deal with what can happen badly, client-server applications --> there is always something that can go wrong on one end of the connection
+    alert('Caught Exception: ' + e.description);
+  }
+}
+
 function getSinglePokemon(){
-  httpRequest = new XMLHttpRequest(); // create the object
-    if (!httpRequest) { // check if the object was properly created
+  httpRequest_individual = new XMLHttpRequest(); // create the object
+    if (!httpRequest_individual) { // check if the object was properly created
 	  // issues with the browser, example: old browser
       alert('Cannot create an XMLHTTP instance');
       return false;
     }
-  var DexNum = document.getElementById()
-  httpRequest.onreadystatechange = getJSON; // we assign a function to the property onreadystatechange (callback function)
-	httpRequest.open('POST','pokeStatsDB.php');
-	httpRequest.send('index'); // GET = send with no parameter !
+  //finds value from html page
+  var DexNum = parseInt(document.getElementById("DexNum").value);
+  if(DexNum < 0){
+    document.getElementById("GET_error").innerHTML = "Pokedex number too small.";
+  }
+  else if(DexNum == 0){
+    document.getElementById("GET_error").innerHTML = "Pokedex number too small.";
+    DexNum = 1;
+  }
+  else if(DexNum > 150){
+    document.getElementById("GET_error").innerHTML = "Pokedex number too big."
+  }
+  else{
+    //puts DexNum into form
+    fd = new FormData();
+    fd.append("findme", DexNum);
+
+    httpRequest_individual.onreadystatechange = getFromDB_individual; // we assign a function to the property onreadystatechange (callback function)
+	  httpRequest_individual.open('POST','pokeStatsDB.php');
+	  httpRequest_individual.send(fd);
+    document.getElementById("GET_error").innerHTML = "";
+  }
 }
 
 function saveData(){
@@ -160,21 +199,40 @@ function saveData(){
   obj.Legendary = document.getElementById("Legendary").value;
   obj.Image = document.getElementById("PokePicture").src;
 
+  console.log("CHECKING SAVE INFO: "+obj.Number);
+  console.log("CHECKING SAVE INFO: "+obj.Name);
+  console.log("CHECKING SAVE INFO: "+obj.Type1);
+  console.log("CHECKING SAVE INFO: "+obj.Type2);
+
   fd = new FormData();
-  fd.append('Number', obj.Number);
-  fd.append('Name', obj.Name);
-  fd.append('Type1', obj.Type1);
-  fd.append('Type2', obj.Type2);
-  fd.append('Total', obj.Total);
-  fd.append('HP', obj.HP);
-  fd.append('Attack', obj.Attack);
-  fd.append('Defense', obj.Defense);
-  fd.append('SpAtk', obj.SpAtk);
-  fd.append('SpDef', obj.SpDef);
-  fd.append('Speed', obj.Speed);
-  fd.append('Generation', obj.Generation);
-  fd.append('Legendary', obj.Legendary);
-  fd.append('Image', obj.Image);
+  fd.append("test", obj.Number);
+  fd.append("test", obj.Name);
+  fd.append("test", obj.Type1);
+  fd.append("test", obj.Type2);
+  fd.append("test", obj.Total);
+  fd.append("test", obj.HP);
+  fd.append("test", obj.Attack);
+  fd.append("test", obj.Defense);
+  fd.append("test", obj.SpAtk);
+  fd.append("test", obj.SpDef);
+  fd.append("test", obj.Speed);
+  fd.append("test", obj.Generation);
+  fd.append("test", obj.Legendary);
+  fd.append("test", obj.Image);
+// save_num
+// save_name
+// save_type1
+// save_type2
+// save_tot
+// save_hp
+// save_atk
+// save_def
+// save_spatk
+// save_spdef
+// save_spd
+// save_gen
+// save_leg
+// save_img
   
   if(!httpRequestSave){
     alert('Cannot create an XMLHTTP instance');
@@ -184,6 +242,8 @@ function saveData(){
   httpRequestSave.open('POST', 'saveData.php');
   httpRequestSave.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   httpRequestSave.send(fd);
+  console.log(fd);
+  console.log("FORM SENT TO PHP");
 }
 
 console.log("IS THIS WORKING????");
