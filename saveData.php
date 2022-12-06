@@ -2,6 +2,10 @@
 include "pokemonClass.php";
 echo "IM IN THE PHP";
 
+if($_SERVER["REQUEST_METHOD"] == 'POST'){
+
+}
+
 echo $_POST['test'];
 if(isset($_POST['save_num'])){
     $num_insert = $_POST['save_num'];
@@ -52,7 +56,7 @@ if(isset($_POST['save_spd'])){
 }else{$spd_insert = 0;}
 
 if(isset($_POST['save_leg'])){
-    $leg_insert = $_POST['save_leg'];
+    (bool)$leg_insert = $_POST['save_leg'];
 }else{$leg_insert = false;}
 
 if(isset($_POST['save_gen'])){
@@ -65,23 +69,35 @@ if(isset($_POST['save_img'])){
 
 $conn = new mySqli('localhost', 'root', '', 'pokemondatabase');
 
-$sql = "UPDATE Pokemon SET
-`Number` = '$num_insert',
-`Name` = '$name_insert',
-`Type1` = '$type1_insert',
-`Type2` = '$type2_insert',
-`Total` = '$tot_insert',
-`HP` = '$hp_insert',
-`Attack` = '$atk_insert',
-`Defense` = '$def_insert',
-`SpAtk` = '$spatk_insert',
-`SpDef` = '$spdef_insert',
-`Speed` = '$spd_insert',
-`Legendary` = '$leg_insert',
-`Generation` = '$gen_insert',
-`Image` = '$img_insert',
-WHERE `Number` = '$num_insert'
-";
+/*
+
+USE BIND PARAM FUNCTION
+
+$sql = "UPDATE leaderboard SET `total_games`, `wins`, `time_played`, `turn_count`) VALUES (?,?,?,?)";
+        if($stmt = mysqli_prepare($conn, $sql)){
+            mysqli_stmt_bind_param($stmt, "iiii", $new_tot_games, $new_wins, $new_time_played, $new_turn_count);
+        }
+SOMETHING LIKE THAT
+
+*/
+
+// $sql = "UPDATE Pokemon SET
+// `Number` = ".$num_insert",".
+// "`Name` = ".$name_insert",".
+// "`Type1` = ".$type1_insert",".
+// `Type2` = '$type2_insert',
+// `Total` = '$tot_insert',
+// `HP` = '$hp_insert',
+// `Attack` = '$atk_insert',
+// `Defense` = '$def_insert',
+// `SpAtk` = '$spatk_insert',
+// `SpDef` = '$spdef_insert',
+// `Speed` = '$spd_insert',
+// `Legendary` = '$leg_insert',
+// `Generation` = '$gen_insert',
+// `Image` = '$img_insert',
+// WHERE `Number` = '$num_insert'
+// ";
 
 //updates database with new information
 $result = $conn->query($sql);

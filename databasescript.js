@@ -184,6 +184,7 @@ function saveData(){
   httpRequestSave = new XMLHttpRequest();
   let obj = new PocketMonsters();
 
+  //get information from text boxes
   obj.Number = document.getElementById("number").value;
   obj.Name = document.getElementById("pokeName").value;
   obj.Type1 = document.getElementById("type1").value;
@@ -204,41 +205,43 @@ function saveData(){
   console.log("CHECKING SAVE INFO: "+obj.Type1);
   console.log("CHECKING SAVE INFO: "+obj.Type2);
 
+  //create a form
   fd = new FormData();
-  fd.append("test", obj.Number);
+  // fd.append("test", obj.Number);
   fd.append("test", obj.Name);
-  fd.append("test", obj.Type1);
-  fd.append("test", obj.Type2);
-  fd.append("test", obj.Total);
-  fd.append("test", obj.HP);
-  fd.append("test", obj.Attack);
-  fd.append("test", obj.Defense);
-  fd.append("test", obj.SpAtk);
-  fd.append("test", obj.SpDef);
-  fd.append("test", obj.Speed);
-  fd.append("test", obj.Generation);
-  fd.append("test", obj.Legendary);
-  fd.append("test", obj.Image);
-// save_num
-// save_name
-// save_type1
-// save_type2
-// save_tot
-// save_hp
-// save_atk
-// save_def
-// save_spatk
-// save_spdef
-// save_spd
-// save_gen
-// save_leg
-// save_img
+  // fd.append("test", obj.Type1);
+  // fd.append("test", obj.Type2);
+  // fd.append("test", obj.Total);
+  // fd.append("test", obj.HP);
+  // fd.append("test", obj.Attack);
+  // fd.append("test", obj.Defense);
+  // fd.append("test", obj.SpAtk);
+  // fd.append("test", obj.SpDef);
+  // fd.append("test", obj.Speed);
+  // fd.append("test", obj.Generation);
+  // fd.append("test", obj.Legendary);
+  // fd.append("test", obj.Image);
+// fd.append("save_num", obj.Number);
+// fd.append("save_name", obj.Name);
+// fd.append("save_type1", obj.Type1);
+// fd.append("save_type2", obj.Type2);
+// fd.append("save_tot", obj.Total);
+// fd.append("save_hp", obj.HP);
+// fd.append("save_atk", obj.Attack);
+// fd.append("save_def", obj.Defense);
+// fd.append("save_spatk", obj.SpAtk);
+// fd.append("save_spdef", obj.SpDef);
+// fd.append("save_spd", obj.Speed);
+// fd.append("save_gen", obj.Generation);
+// fd.append("save_leg", obj.Legendary);
+// fd.append("save_img", obj.Image);
   
   if(!httpRequestSave){
     alert('Cannot create an XMLHTTP instance');
     return false;
   }
   
+  //send the form
   httpRequestSave.open('POST', 'saveData.php');
   httpRequestSave.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   httpRequestSave.send(fd);
