@@ -15,30 +15,6 @@ class PocketMonsters{
         this.Legendary = Legendary;    
         this.Image = Image;
     }
-
-    findType(inp1, inp2){
-        let typeList = new pokemansay();
-
-        for(let mon of this.smolData){
-            if((mon.Type1 == inp1) && (mon.Type2 == inp2)){
-                console.log(mon);
-                typeList.push(mon);
-            }
-        }
-        return new PocketMonsters(typeList);
-    }
-
-    getLegendary(input){
-        let legendList = new pokemansay();
-
-        for(let mon of this.smolData){
-            if(mon.Legendary == input){
-                console.log(mon);
-                legendList.push(mon);
-            }
-        }
-        return new PocketMonsters(legendList);
-    }
 }
 
 var currInd = 0;
@@ -90,13 +66,10 @@ function next(){
   }else{
     currInd += 1;
   }
-  console.log(currInd);
   show(pokemans[currInd]);
 }
 
-
 function putIntoPage() {
-  console.log("in putIntoPage");
   httpRequest = new XMLHttpRequest(); // create the object
   if (!httpRequest) { // check if the object was properly created
 	// issues with the browser, example: old browser
@@ -109,15 +82,28 @@ function putIntoPage() {
 	httpRequest.send(); // GET = send with no parameter !
 }
 
+function sortAlpha() {
+  httpRequest = new XMLHttpRequest(); // create the object
+  if (!httpRequest) { // check if the object was properly created
+	// issues with the browser, example: old browser
+    alert('Cannot create an XMLHTTP instance');
+    return false;
+  }
+  httpRequest.onreadystatechange = getFromDB; // we assign a function to the property onreadystatechange (callback function)
+	httpRequest.open('GET','sortAlpha.php');
+  httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	httpRequest.send(); // GET = send with no parameter !
+}
+
 function getFromDB() {
   try {
     if (httpRequest.readyState === XMLHttpRequest.DONE) {
       if (httpRequest.status === 200) {
         //console.log("server status: "+httpRequest.status);
         //console.log("server response: "+httpRequest.responseText);
-            pokemans = JSON.parse(httpRequest.responseText);
-            console.log(pokemans);
-            show(pokemans[currInd]);
+        pokemans = JSON.parse(httpRequest.responseText);
+        //console.log(pokemans);
+        show(pokemans[currInd]);
       } else {
         alert('There was a problem with the request.');
       }
@@ -180,7 +166,6 @@ function getSinglePokemon(){
 }
 
 function saveData(){
-  console.log("Trying to save data");
   httpRequestSave = new XMLHttpRequest();
   let obj = new PocketMonsters();
 
@@ -197,44 +182,27 @@ function saveData(){
   obj.SpDef = document.getElementById("SPDEF").value;
   obj.Speed = document.getElementById("SPD").value;
   obj.Generation = document.getElementById("GEN").value;
-  obj.Legendary = document.getElementById("Legendary").value;
-  obj.Image = document.getElementById("PokePicture").src;
-
-  console.log("CHECKING SAVE INFO: "+obj.Number);
-  console.log("CHECKING SAVE INFO: "+obj.Name);
-  console.log("CHECKING SAVE INFO: "+obj.Type1);
-  console.log("CHECKING SAVE INFO: "+obj.Type2);
+  obj.Legendary = parseInt(document.getElementById("Legendary").value);
+  if(document.getElementById("PokePicture").src){
+    obj.Image = document.getElementById("PokePicture").src;
+  }
 
   //create a form
   fd = new FormData();
-  // fd.append("test", obj.Number);
-  fd.append("test", obj.Name);
-  // fd.append("test", obj.Type1);
-  // fd.append("test", obj.Type2);
-  // fd.append("test", obj.Total);
-  // fd.append("test", obj.HP);
-  // fd.append("test", obj.Attack);
-  // fd.append("test", obj.Defense);
-  // fd.append("test", obj.SpAtk);
-  // fd.append("test", obj.SpDef);
-  // fd.append("test", obj.Speed);
-  // fd.append("test", obj.Generation);
-  // fd.append("test", obj.Legendary);
-  // fd.append("test", obj.Image);
-// fd.append("save_num", obj.Number);
-// fd.append("save_name", obj.Name);
-// fd.append("save_type1", obj.Type1);
-// fd.append("save_type2", obj.Type2);
-// fd.append("save_tot", obj.Total);
-// fd.append("save_hp", obj.HP);
-// fd.append("save_atk", obj.Attack);
-// fd.append("save_def", obj.Defense);
-// fd.append("save_spatk", obj.SpAtk);
-// fd.append("save_spdef", obj.SpDef);
-// fd.append("save_spd", obj.Speed);
-// fd.append("save_gen", obj.Generation);
-// fd.append("save_leg", obj.Legendary);
-// fd.append("save_img", obj.Image);
+  fd.append("save_num", obj.Number);
+  fd.append("save_name", obj.Name);
+  fd.append("save_type1", obj.Type1);
+  fd.append("save_type2", obj.Type2);
+  fd.append("save_tot", obj.Total);
+  fd.append("save_hp", obj.HP);
+  fd.append("save_atk", obj.Attack);
+  fd.append("save_def", obj.Defense);
+  fd.append("save_spatk", obj.SpAtk);
+  fd.append("save_spdef", obj.SpDef);
+  fd.append("save_spd", obj.Speed);
+  fd.append("save_gen", obj.Generation);
+  fd.append("save_leg", obj.Legendary);
+  fd.append("save_img", obj.Image);
   
   if(!httpRequestSave){
     alert('Cannot create an XMLHTTP instance');
@@ -243,11 +211,81 @@ function saveData(){
   
   //send the form
   httpRequestSave.open('POST', 'saveData.php');
-  httpRequestSave.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   httpRequestSave.send(fd);
-  console.log(fd);
-  console.log("FORM SENT TO PHP");
 }
 
-console.log("IS THIS WORKING????");
+function insertPokemon(){
+  httpRequest = new XMLHttpRequest();
+  let obj = new PocketMonsters();
+
+  //get information from text boxes
+  obj.Number = document.getElementById("number").value;
+  obj.Name = document.getElementById("pokeName").value;
+  obj.Type1 = document.getElementById("type1").value;
+  obj.Type2 = document.getElementById("type2").value;
+  obj.Total = document.getElementById("total").value;
+  obj.HP = document.getElementById("HP").value;
+  obj.Attack = document.getElementById("ATK").value;
+  obj.Defense = document.getElementById("DEF").value;
+  obj.SpAtk = document.getElementById("SPATK").value;
+  obj.SpDef = document.getElementById("SPDEF").value;
+  obj.Speed = document.getElementById("SPD").value;
+  obj.Generation = document.getElementById("GEN").value;
+  obj.Legendary = parseInt(document.getElementById("Legendary").value);
+  if(document.getElementById("PokePicture").src){
+    obj.Image = document.getElementById("PokePicture").src;
+  }
+
+  //create a form
+  fd = new FormData();
+  fd.append("num", obj.Number);
+  fd.append("name", obj.Name);
+  fd.append("type1", obj.Type1);
+  fd.append("type2", obj.Type2);
+  fd.append("tot", obj.Total);
+  fd.append("hp", obj.HP);
+  fd.append("atk", obj.Attack);
+  fd.append("def", obj.Defense);
+  fd.append("spatk", obj.SpAtk);
+  fd.append("spdef", obj.SpDef);
+  fd.append("spd", obj.Speed);
+  fd.append("gen", obj.Generation);
+  fd.append("leg", obj.Legendary);
+  fd.append("img", obj.Image);
+  
+  if(!httpRequest){
+    alert('Cannot create an XMLHTTP instance');
+    return false;
+  }
+  
+  //send the form
+  httpRequest.open('POST', 'insertPokemon.php');
+  httpRequest.send(fd);
+}
+
+function edit(){
+  document.querySelectorAll("input.stat-input").forEach(input => input.disabled = !input.disabled);
+}
+
+function deletePokemon(){
+  httpRequest = new XMLHttpRequest();
+  let obj = new PocketMonsters();
+
+  //get information from text boxes
+  obj.Number = document.getElementById("number").value;;
+
+  //create a form
+  fd = new FormData();
+  fd.append("num", obj.Number);
+  
+  if(!httpRequest){
+    alert('Cannot create an XMLHTTP instance');
+    return false;
+  }
+  
+  //send the form
+  httpRequest.open('POST', 'deletePokemon.php');
+  httpRequest.send(fd);
+}
+
 putIntoPage();
