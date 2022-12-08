@@ -5,8 +5,8 @@
 include "pokemonClass.php";
 
 $servername = "localhost"; // default server name
-$username = "carlo"; // user name that you created
-$password = "nmse*CWRqYgk9jxf"; // password that you created
+$username = "root"; // user name that you created
+$password = ""; // password that you created
 $dbname = "pokemondatabase";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
