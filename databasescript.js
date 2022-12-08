@@ -150,8 +150,8 @@ function getSinglePokemon(){
     document.getElementById("GET_error").innerHTML = "Pokedex number too small.";
     DexNum = 1;
   }
-  else if(DexNum > 150){
-    document.getElementById("GET_error").innerHTML = "Pokedex number too big."
+  else if(DexNum > pokemans.length){
+    document.getElementById("GET_error").innerHTML = "Pokedex number too big";
   }
   else{
     //puts DexNum into form

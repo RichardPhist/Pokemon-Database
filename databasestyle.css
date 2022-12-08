@@ -63,7 +63,7 @@ input,label{
 }
 
 #scrollers{
-    width: 10%;
+    width: 50px;
     font-weight: bold;
 }
 
@@ -78,6 +78,7 @@ input,label{
 #PokePicture{
     height: 350px;
     width: auto;
+    border-radius: 12%;
 }
 
 #pic-container{
@@ -91,4 +92,14 @@ input,label{
 
 .txtBoxes{
     width: 38%;
+}
+
+#GET_error{
+    color: red;
+}
+
+.pic-upload{
+    width:200px;
+    margin: auto;
+
 }
