@@ -25,7 +25,12 @@ if($_SERVER['REQUEST_METHOD'] = 'POST'){
     $spd_insert = $_POST['spd'];
     $gen_insert = $_POST['gen'];
     (int)$leg_insert = $_POST['leg'];
-    $img_insert = $_POST['img'];
+    if($_POST['img'] = 'http://localhost/mysite/Pokemon-Database/database.html'){
+        $img_insert = "";
+    }
+    else{
+        $img_insert = $_POST['img'];
+    }
 
     $sql = "INSERT INTO Pokemon (Number, Name, Type1, Type2, Total, HP, Attack, Defense, SpAtk, SpDef, Speed, Generation, Legendary, Image) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     if ($stmt = mysqli_prepare($conn, $sql)) {

@@ -121,16 +121,16 @@ function getFromDB_individual() {
         //console.log("server status: "+httpRequest.status);
         //console.log("server response: "+httpRequest.responseText);
             var single_boi = JSON.parse(httpRequest_individual.responseText);
-            var single_boi_num = single_boi.Number - 1;
-            currInd = single_boi_num;
-            show(pokemans[currInd]);
+            //var single_boi_num = single_boi.Number - 1;
+            //currInd = single_boi_num;
+            show(single_boi);
       } else {
         alert('There was a problem with the request.');
       }
     }
   }
   catch( e ) { // Always deal with what can happen badly, client-server applications --> there is always something that can go wrong on one end of the connection
-    alert('Caught Exception: ' + e.description);
+    document.getElementById("GET_error").innerHTML = "Pokedex number not found.";
   }
 }
 
@@ -150,7 +150,7 @@ function getSinglePokemon(){
     document.getElementById("GET_error").innerHTML = "Pokedex number too small.";
     DexNum = 1;
   }
-  else if(DexNum > pokemans.length){
+  else if(DexNum > pokemans[pokemans.length-1].Number){
     document.getElementById("GET_error").innerHTML = "Pokedex number too big";
   }
   else{

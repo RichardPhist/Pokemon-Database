@@ -30,13 +30,14 @@ function get_single_pokemon(){ //performs on press of GET
                     $newPokemon->Legendary=($row['Legendary']);
                     $newPokemon->Image=($row['Image']);
                 }
-            } else {
+                $single_pokemon = json_encode($newPokemon);
+                echo $single_pokemon;
+            } 
+            else {
                 echo "Error selecting pokemon: " . $conn->error ."<br>";
             }
         }
     }
-    $single_pokemon = json_encode($newPokemon);
-    echo $single_pokemon;
     $conn->close();
 }
 
